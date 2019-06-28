@@ -27,16 +27,25 @@
         </el-select>
       </el-form-item>
       <el-form-item label="附件ID集合">
-        <el-input v-model="form.fileIds"></el-input>
-      </el-form-item>
-      <el-form-item label="部门ID(选填)">
-        <el-input v-model="form.departId"></el-input>
-      </el-form-item>
-      <el-form-item label="组织ID(选填)">
         <el-input v-model="form.groupId"></el-input>
       </el-form-item>
+      <el-form-item label="部门ID(选填)">
+        <el-select filterable placeholder="请选择">
+          <el-option>研发部</el-option>
+          <el-option>人事部</el-option>
+        </el-select>
+      </el-form-item>
+      <el-form-item label="组织ID(选填)">
+        <el-select filterable placeholder="请选择">
+          <el-option>一组</el-option>
+          <el-option>二组</el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="用户ID(选填)">
-        <el-input v-model="form.userId"></el-input>
+        <el-select filterable placeholder="请选择">
+          <el-option>7306</el-option>
+          <el-option>7088</el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="描述 ">
         <el-input type="textarea" v-model="form.remark"></el-input>
