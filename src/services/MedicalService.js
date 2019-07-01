@@ -36,8 +36,8 @@ const addDocument = (param = {}) => {
 }
 
 const lookDocument = (param = {}) => {
-  
-  return new Promise((resolve, reject) => { 
+
+  return new Promise((resolve, reject) => {
     param = {
       id: param.id
     }
@@ -45,7 +45,7 @@ const lookDocument = (param = {}) => {
       method: 'post',
       url: 'medical/view',
       data: param
-    }).then(res => { 
+    }).then(res => {
       resolve(res)
       console.log('查看成功')
     })
@@ -53,5 +53,6 @@ const lookDocument = (param = {}) => {
 }
 
 export default {
-  addDocument
+  addDocument,
+  lookDocument
 }

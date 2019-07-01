@@ -9,18 +9,18 @@
     center
   >
     <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="名称">
+      <el-form-item label="*名称">
         <el-input v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item label="分数">
         <el-input v-model="form.total"></el-input>
       </el-form-item>
-      <el-form-item label="年份(必填)">
+      <el-form-item label="*年份">
         <el-col :span="11">
           <el-date-picker type="date" placeholder="选择日期" v-model="form.year" style="width: 100%;"></el-date-picker>
         </el-col>
       </el-form-item>
-      <el-form-item label="机构ID(必填)">
+      <el-form-item label="*机构ID">
         <el-select v-model="form.subjectId" placeholder="请选择活动区域">
           <el-option label="区域一" value="shanghai"></el-option>
           <el-option label="区域二" value="beijing"></el-option>
@@ -29,19 +29,19 @@
       <el-form-item label="附件ID集合">
         <el-input v-model="form.groupId"></el-input>
       </el-form-item>
-      <el-form-item label="部门ID(选填)">
+      <el-form-item label="部门ID">
         <el-select filterable placeholder="请选择">
           <el-option>研发部</el-option>
           <el-option>人事部</el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="组织ID(选填)">
+      <el-form-item label="组织ID">
         <el-select filterable placeholder="请选择">
           <el-option>一组</el-option>
           <el-option>二组</el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="用户ID(选填)">
+      <el-form-item label="用户ID">
         <el-select filterable placeholder="请选择">
           <el-option>7306</el-option>
           <el-option>7088</el-option>
@@ -66,6 +66,7 @@ export default {
       type: Boolean,
       default: false
     },
+
     type: {
       // 类型: 0-查看(默认),1-新增,2-修改
       type: Number,
@@ -74,8 +75,8 @@ export default {
   },
   data() {
     return {
+      isShow: false,
       form: {
-        isShow: false,
         name: "",
         total: undefined,
         year: "",
@@ -120,7 +121,7 @@ export default {
   methods: {
     // 关闭按钮
     handleClose() {
-      this.isShow = true;
+      this.isShow = false;
     },
     //取消按钮
     onCancel() {
@@ -134,7 +135,10 @@ export default {
           MedicalService.addDocument(this.form).then(res => {
             if (res.code === 200) {
               this.isShow = false;
+              console.log(909090);
+              console.log(res);
               this.$message.success(res.message);
+              console.log(成功成功);
             } else {
               this.$message.error(res.message);
             }

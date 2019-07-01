@@ -18,6 +18,7 @@
   </div>
 </template>
 <script>
+import Pchat from "../services/EchartService.js";
 import { option_people } from "@/components/echarts/people.js";
 import { option_education } from "@/components/echarts/education.js";
 import { option_pchangge } from "@/components/echarts/pchangge.js";
@@ -58,30 +59,77 @@ export default {
     //男女比例
     people() {
       var people = this.$echarts.init(document.getElementById("people"));
-      // 绘制图表
-      people.setOption(option_people);
+      Pchat.Pchart({}).then(res => {
+        console.log(res);
+        if (res.code === 200) {
+          console.log(res.data[0]);
+          option_people.series[0].data[0].value = res.data[0].sex.man;
+          option_people.series[0].data[1].value = res.data[0].sex.woman;
+          //绘制图表
+          people.setOption(option_people);
+        }
+      });
     },
 
     //学历
     education() {
       var education = this.$echarts.init(document.getElementById("education"));
-        // 绘制图表
-        education.setOption(option_education);
-    
+      Pchat.Pchart({}).then(res => {
+        if (res.code === 200) {
+          option_education.xAxis[0].data[0] = res.data[0].education[0];
+          option_education.xAxis[0].data[1] = res.data[0].education[1];
+          option_education.xAxis[0].data[2] = res.data[0].education[2];
+          option_education.xAxis[0].data[3] = res.data[0].education[3];
+          option_education.xAxis[0].data[4] = res.data[0].education[4];
+
+          option_education.series[0].data[0] = res.data[0].education.value[0];
+          option_education.series[0].data[1] = res.data[0].education.value[1];
+          option_education.series[0].data[2] = res.data[0].education.value[2];
+          option_education.series[0].data[3] = res.data[0].education.value[3];
+          option_education.series[0].data[4] = res.data[0].education.value[4];
+
+          // console.log(res.data[0].education);
+          // var arr = [];
+          // for (var i = 0; i < res.length; i++) {
+          //   arr.push(res.data[0].education[i]);
+          // }
+          // return arr;
+        }
+      });
+
+      // 绘制图表
+      education.setOption(option_education);
     },
 
-    //人数变化
+    //身份
     pchangge() {
       var pchangge = this.$echarts.init(document.getElementById("pchangge"));
-      // 绘制图表
-      pchangge.setOption(option_pchangge);
+      Pchat.Pchart({}).then(res => {
+        option_pchangge.series[0].data[0].value = res.data[0].identity.cadre;
+        option_pchangge.series[0].data[1].value = res.data[0].identity.masses;
+        // 绘制图表
+        pchangge.setOption(option_pchangge);
+      });
     },
 
     //科室
     faceof() {
       var faceof = this.$echarts.init(document.getElementById("faceof"));
-      // 绘制图表
-      faceof.setOption(option_faceof);
+      Pchat.Pchart({}).then(res => {
+        if (res.code === 200) {
+          option_faceof.series[0].data[0].value = res.data[0].department.eye;
+          option_faceof.series[0].data[1].value =
+            res.data[0].department.chinese;
+          option_faceof.series[0].data[2].value =
+            res.data[0].department.nternal;
+          option_faceof.series[0].data[3].value =
+            res.data[0].department.emergency;
+          option_faceof.series[0].data[4].value =
+            res.data[0].department.surgery;
+          // 绘制图表
+          faceof.setOption(option_faceof);
+        }
+      });
     },
 
     //支部
@@ -103,6 +151,7 @@ export default {
     city() {
       // 基于准备好的dom，初始化echarts实例
       var city = this.$echarts.init(document.getElementById("city"));
+
       // 绘制图表
       city.setOption(option_city);
     },
@@ -111,16 +160,30 @@ export default {
     activity() {
       // 基于准备好的dom，初始化echarts实例
       var activity = this.$echarts.init(document.getElementById("activity"));
+      // $.get("http://localhost/userInfo/listSex").done(function(result) {
+      //   console.log(7878);
+      //   console.log(result);
+      //   result = JSON.parse(result);
       // 绘制图表
       activity.setOption(option_activity);
+      // });
     },
 
     //户籍统计
     financial() {
       // 基于准备好的dom，初始化echarts实例
       var financial = this.$echarts.init(document.getElementById("financial"));
-      // 绘制图表
-      financial.setOption(option_financial);
+      Pchat.Pchart({}).then(res => {
+        console.log(9090);
+        console.log(res);
+        if (res.code === 200) {
+          console.log(res.data[0]);
+          option_financial.series[0].data[0].value = res.data[0].place.NO;
+          option_financial.series[0].data[1].value = res.data[0].place.yes;
+          // 绘制图表
+          financial.setOption(option_financial);
+        }
+      });
     }
   }
 };

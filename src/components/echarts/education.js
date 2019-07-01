@@ -19,7 +19,6 @@ export const option_education = {
   xAxis: [{
     type: 'category',
     data: ['高中', '大专', '本科', '硕士', '博士'],
-    // data: [this.data.Result.name],
     axisTick: {
       alignWithLabel: true
     }
@@ -31,7 +30,7 @@ export const option_education = {
     name: '学历情况',
     type: 'bar',
     barWidth: '55%',
-    data: [200, 334, 390, 330, 220]
-    // data: [this.data.Result.value]
+    // data: []
+    data: ['45', '23', '67', '98', '34']
   }]
 }

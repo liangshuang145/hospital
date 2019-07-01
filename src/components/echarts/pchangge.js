@@ -11,7 +11,7 @@ export const option_pchangge = {
   legend: {
     orient: 'vertical',
     left: 'left',
-    data: ['群众', '团委', '党员']
+    data: ['非党员', '党员']
   },
   series: [{
     name: '访问来源',
@@ -19,17 +19,16 @@ export const option_pchangge = {
     radius: '55%',
     center: ['50%', '60%'],
     data: [{
-      value: 120,
-      name: '群众'
-    },
-    {
-      value: 240,
-      name: '团委'
-    },
-    {
-      value: 430,
-      name: '党员'
-    }
+        value: 120,
+        // value: result.data[1].cadre,
+        name: '党员'
+      },
+      {
+        value: 240,
+        // value: result.data[1].message,
+        name: '非党员'
+      },
+
 
     ],
     itemStyle: {

@@ -12,6 +12,7 @@ export const option_people = {
     orient: 'vertical',
     left: 'left',
     data: ['男生', '女生']
+
   },
   series: [{
     name: '访问来源',
@@ -19,14 +20,15 @@ export const option_people = {
     radius: '55%',
     center: ['50%', '60%'],
     data: [{
-      value: 335,
-      name: '男生'
-    },
-    {
-      value: 310,
-      name: '女生'
-    }
-
+        // value: res.data.sex.man,
+        // value: 80,
+        name: '男生'
+      },
+      {
+        // value: res.data.sex.woman,
+        // value: 120,
+        name: '女生'
+      }
     ],
     itemStyle: {
       emphasis: {

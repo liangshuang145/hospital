@@ -25,13 +25,15 @@ export const option_financial = {
     radius: '55%',
     center: ['50%', '60%'],
     data: [{
-      value: 320,
-      name: '杭州'
-    },
-    {
-      value: 240,
-      name: '非杭州'
-    }
+        // value: 320,
+        // option_financial.series[0].data[0] = res.data[0].place[0],
+        // name: '杭州'
+      },
+      {
+        // value: 240,
+        // value: res.data[0].place[1],
+        // name: '非杭州'
+      }
     ]
   }]
 }
