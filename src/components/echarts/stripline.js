@@ -30,6 +30,8 @@ export const option_stripline = {
     name: '直接访问',
     type: 'bar',
     barWidth: '60%',
-    data: [30, 52, 140, 230, 160]
+    // data: [30, 52, 140, 230, 160]
+    data: []
+
   }]
 };

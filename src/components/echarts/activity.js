@@ -30,28 +30,8 @@ export const option_activity = {
     name: '人数',
     type: 'bar',
     barWidth: '60%',
-    data: ['37', '47', '89', '60', '72']
-    // data: (function () {
-    //   var doct = [];
-    //   $.ajax({
-    //     type: 'get',
-    //     async: false,
-    //     url: '/userInfo/listSex',
-    //     data: {},
-    //     type: JSON,
-    //     success: function (result) {
-    //       if (result) {
-    //         for (var i = 0; i < result.length; i++) {
-    //           doct.push(rsult[i].title)
-    //         }
-    //       }
-    //     },
-    //     // error: function (errorMsg) {
-
-    //     // }
-
-    //   })
-    // })
+    // data: ['37', '47', '89', '60', '72']
+    data: []
   }]
 
 }

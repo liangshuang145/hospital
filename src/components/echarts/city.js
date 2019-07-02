@@ -6,13 +6,13 @@ export const option_city = {
 
   xAxis: {
     type: 'category',
-    data: ['2年以下', '2年-6年', '6年以上']
+    data: ['2年以下', '2年-5年', '5年-10年', '10年以上']
   },
   yAxis: {
     type: 'value'
   },
   series: [{
-    data: [80, 48, 30],
+    data: [],
     type: 'line',
     areaStyle: {}
   }]

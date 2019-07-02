@@ -76,17 +76,17 @@ export default {
       var education = this.$echarts.init(document.getElementById("education"));
       Pchat.Pchart({}).then(res => {
         if (res.code === 200) {
-          option_education.xAxis[0].data[0] = res.data[0].education[0];
-          option_education.xAxis[0].data[1] = res.data[0].education[1];
-          option_education.xAxis[0].data[2] = res.data[0].education[2];
-          option_education.xAxis[0].data[3] = res.data[0].education[3];
-          option_education.xAxis[0].data[4] = res.data[0].education[4];
+          // option_education.xAxis[0].data[0] = res.data[0].education[0];
+          // option_education.xAxis[0].data[1] = res.data[0].education[1];
+          // option_education.xAxis[0].data[2] = res.data[0].education[2];
+          // option_education.xAxis[0].data[3] = res.data[0].education[3];
+          // option_education.xAxis[0].data[4] = res.data[0].education[4];
 
-          option_education.series[0].data[0] = res.data[0].education.value[0];
-          option_education.series[0].data[1] = res.data[0].education.value[1];
-          option_education.series[0].data[2] = res.data[0].education.value[2];
-          option_education.series[0].data[3] = res.data[0].education.value[3];
-          option_education.series[0].data[4] = res.data[0].education.value[4];
+          // option_education.series[0].data[0] = res.data[0].education.value[0];
+          // option_education.series[0].data[1] = res.data[0].education.value[1];
+          // option_education.series[0].data[2] = res.data[0].education.value[2];
+          // option_education.series[0].data[3] = res.data[0].education.value[3];
+          // option_education.series[0].data[4] = res.data[0].education.value[4];
 
           // console.log(res.data[0].education);
           // var arr = [];
@@ -94,11 +94,10 @@ export default {
           //   arr.push(res.data[0].education[i]);
           // }
           // return arr;
+          // 绘制图表
+          education.setOption(option_education);
         }
       });
-
-      // 绘制图表
-      education.setOption(option_education);
     },
 
     //身份

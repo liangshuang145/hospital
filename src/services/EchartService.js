@@ -14,7 +14,7 @@ import http from "@/lib/http";
 const Pchart = (param = {}) => {
   return new Promise((resolve, reject) => {
     http.get({
-      url: "userInfo/listSex",
+      url: "userInfo/listPower",
       method: "get",
       data: param
     }).then(res => {
