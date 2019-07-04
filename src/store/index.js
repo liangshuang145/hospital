@@ -13,6 +13,9 @@ import MenuService from '@/services/MenuService'
 import ButtonService from '@/services/ButtonService'
 import FieldService from '@/services/FieldService'
 import PageService from '@/services/PageService'
+import MedicalService from '@/services/MedicalService'
+import AppendService from '../services/AppendService';
+
 
 Vue.use(Vuex);
 
@@ -31,6 +34,9 @@ export default new Vuex.Store({
     fieldList: [], // 字段列表
     pageList: [], // 页面列表
     menuInfo: {}, // 单个菜单信息
+    addDocument: [], // 新增医德档案
+    addAppend: [] //上传附件
+
   },
   mutations: {
     // 登录
@@ -80,13 +86,23 @@ export default new Vuex.Store({
     setMenuInfo(state, data) {
       state.menuInfo = data
     },
+
     // 字段列表
     setFieldList(state, data) {
       state.fieldList = data
     },
+
     // 页面列表
     setPageList(state, data) {
       state.pageList = data
+    },
+    // 医德档案
+    setAddDocument(state, data) {
+      state.addDocument = data;
+    },
+    //上传附件
+    setAppend(state, data) {
+      state.addAppend = data
     }
 
   },
@@ -136,8 +152,6 @@ export default new Vuex.Store({
         commit('setUserGroupList', res)
       })
     },
-
-
     // 获取角色列表
     getRoleList({
       commit
@@ -196,7 +210,6 @@ export default new Vuex.Store({
     }) {
       MenuService.getMenuList().then((res) => {
         console.log('this is getMenuList work ...');
-
         commit('setMenuList', res)
       })
     },
@@ -237,6 +250,26 @@ export default new Vuex.Store({
         console.log('this is getPageList work ...')
         commit('setPageList', res)
       })
+    },
+    // 添加医德档案
+    getAddDocument({
+      commit
+    }) {
+      MedicalService.addDocument().then((res) => {
+        console.log('this is addDocument work ...')
+        commit('setAddDocument', res)
+      })
+    },
+    //上传附件
+    getAppend({
+      commit
+    }) {
+      AppendService.getAppend().then(res => {
+        console.log('this is addDocument work ...')
+        console.log('setAppend', res)
+      })
     }
+
+
   }
 })

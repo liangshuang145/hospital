@@ -19,7 +19,6 @@ import mock from '@/mocks/data'
 const getGroupListBySubjectId = (param = {}) => {
   // 测试
   return new Promise((resolve) => {
-    z
     http.post({
       url: 'groups/list',
       method: 'post',

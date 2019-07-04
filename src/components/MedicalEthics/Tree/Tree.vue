@@ -2,37 +2,36 @@
 <template>
   <div class="tree">
     <el-tabs type="border-card">
-      <el-input placeholder="输入关键字进行过滤" v-model="filterText"></el-input>
+      <el-tabs-pane label="年度">
+        <el-input placeholder="输入关键字进行过滤" v-model="filterText"></el-input>
 
-      <el-tree
-        class="filter-tree"
-        :data="data"
-        :props="defaultProps"
-        default-expand-all
-        :filter-node-method="filterNode"
-        ref="tree"
-      ></el-tree>
+        <el-tree
+          class="filter-tree"
+          :data="data"
+          :props="defaultProps"
+          default-expand-all
+          :filter-node-method="filterNode"
+          ref="tree"
+        ></el-tree>
+      </el-tabs-pane>
     </el-tabs>
   </div>
 </template>
 
   <script>
 import { mapState, mapActions } from "vuex";
+import ElTabsPane from "../../../../node_modules/element-ui/packages/tabs/src/tab-pane";
 
 export default {
   name: "Tree",
-  // data() {
-  //   return {
-  //     filterText: "",
-  //     defaultProps: {
-  //       children: "child",
-  //       label: "name"
-  //     }
-  //   };
-  // },
+  components: { ElTabsPane },
   data() {
     return {
       filterText: "",
+      defaultProps: {
+        children: "child",
+        label: "name"
+      },
       data: [
         {
           id: 1,
@@ -85,11 +84,6 @@ export default {
       ]
     };
   },
-  //   defaultProps: {
-  //     children: 'children',
-  //     label: 'label'
-  //   }
-  // }
   watch: {
     filterText(val) {
       this.$refs.tree.filter(val);

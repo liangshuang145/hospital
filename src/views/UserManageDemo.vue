@@ -9,10 +9,10 @@
     <div class="content-panel">
       <el-row>
         <!--<el-col :span="5">-->
-          <!--<tree @nodeDept="thisDept"/>-->
+        <!--<tree @nodeDept="thisDept"/>-->
         <!--</el-col>-->
         <el-col :span="24">
-          <manage :currentNode="currentNode"/>
+          <manage :currentNode="currentNode" />
         </el-col>
       </el-row>
     </div>
@@ -20,32 +20,30 @@
 </template>
 
 <script>
-import Manage from '@/components/UserManage/Manage/Manage.vue'
-import Tree from '@/components/UserManage/Tree/Tree.vue'
-
+import Manage from "@/components/UserManage/Manage/Manage.vue";
+import Tree from "@/components/UserManage/Tree/Tree.vue";
 
 export default {
-  name: 'UserManageDemo',
+  name: "UserManageDemo",
   components: {
     Manage,
     Tree
   },
   data() {
     return {
-      pageTitle: '用户管理',
+      pageTitle: "用户管理",
       currentNode: null
-    }
+    };
   },
   computed: {},
   watch: {},
-  created() {
-  },
+  created() {},
   methods: {
     thisDept(data) {
-      this.currentNode = data
-    },
+      this.currentNode = data;
+    }
   }
-}
+};
 </script>
 
 <style scoped>

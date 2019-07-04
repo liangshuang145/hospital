@@ -8,12 +8,12 @@
       @current-change="handleTableChange"
       height="520"
     >
-      <el-table-column prop="name" label="名称"/>
-      <el-table-column prop="total" label="分数"/>
-      <el-table-column prop="year" label="年份"/>
-      <el-table-column prop="remark" label="描述"/>
+      <el-table-column prop="name" label="名称" />
+      <el-table-column prop="total" label="分数" />
+      <el-table-column prop="year" label="年份" />
+      <el-table-column prop="remark" label="描述" />
     </el-table>
-    <el-pagination background layout="prev, pager, next" :total="1000"/>
+    <el-pagination background layout="prev, pager, next" :total="1000" />
   </div>
 </template>
 
@@ -46,6 +46,7 @@ export default {
       this.changeTableData = val;
       this.$emit("tableDataChange", val);
     }
+
     //    // 查看用户
     //    viewUser(data) {
     //      console.log('data =viewUser= ', data)
