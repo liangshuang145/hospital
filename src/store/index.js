@@ -100,6 +100,7 @@ export default new Vuex.Store({
     setAddDocument(state, data) {
       state.addDocument = data;
     },
+
     //上传附件
     setAppend(state, data) {
       state.addAppend = data
@@ -260,16 +261,17 @@ export default new Vuex.Store({
         commit('setAddDocument', res)
       })
     },
-    //上传附件
-    getAppend({
-      commit
-    }) {
-      AppendService.getAppend().then(res => {
-        console.log('this is addDocument work ...')
-        console.log('setAppend', res)
-      })
-    }
-
-
+  },
+  //上传附件
+  getAppend({
+    commit
+  }) {
+    AppendService.getAppend().then(res => {
+      console.log('this is addDocument work ...')
+      console.log('setAppend', res)
+    })
   }
+
+
+}
 })

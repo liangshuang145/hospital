@@ -255,6 +255,14 @@ export default {
       cb(result);
     },
 
+    getUserList(queryString, cb) {
+      var word = this.word;
+      var result = queryString
+        ? word.filter(this.createFilter(queryString))
+        : word;
+      //调用callback返回建议列表的数据
+      cb(result);
+    },
     createFilter(queryString) {
       return word => {
         return (

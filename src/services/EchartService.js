@@ -11,6 +11,7 @@ import http from "@/lib/http";
  * @param param
  * @returns {Promise}
  */
+//党组织图谱
 const Pchart = (param = {}) => {
   return new Promise((resolve, reject) => {
     http.get({
@@ -23,6 +24,19 @@ const Pchart = (param = {}) => {
   });
 };
 
+//力量图谱
+const Echart = (param = {}) => {
+  return new Promise((resolve, reject) => {
+    http.get({
+      url: '',
+      method: 'get',
+      data: param
+    }).then(res => {
+      resolve(res)
+    })
+  })
+}
 export default {
-  Pchart
+  Pchart,
+  Echart
 };

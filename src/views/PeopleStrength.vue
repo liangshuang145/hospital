@@ -59,7 +59,7 @@ export default {
     //男女比例
     people() {
       var people = this.$echarts.init(document.getElementById("people"));
-      Pchat.Pchart({}).then(res => {
+      Pchat.Echart({}).then(res => {
         console.log(res);
         if (res.code === 200) {
           console.log(res.data[0]);
@@ -74,36 +74,26 @@ export default {
     //学历
     education() {
       var education = this.$echarts.init(document.getElementById("education"));
-      Pchat.Pchart({}).then(res => {
+      Pchat.Echart({}).then(res => {
         if (res.code === 200) {
-          // option_education.xAxis[0].data[0] = res.data[0].education[0];
-          // option_education.xAxis[0].data[1] = res.data[0].education[1];
-          // option_education.xAxis[0].data[2] = res.data[0].education[2];
-          // option_education.xAxis[0].data[3] = res.data[0].education[3];
-          // option_education.xAxis[0].data[4] = res.data[0].education[4];
-
-          // option_education.series[0].data[0] = res.data[0].education.value[0];
-          // option_education.series[0].data[1] = res.data[0].education.value[1];
-          // option_education.series[0].data[2] = res.data[0].education.value[2];
-          // option_education.series[0].data[3] = res.data[0].education.value[3];
-          // option_education.series[0].data[4] = res.data[0].education.value[4];
-
-          // console.log(res.data[0].education);
-          // var arr = [];
-          // for (var i = 0; i < res.length; i++) {
-          //   arr.push(res.data[0].education[i]);
-          // }
-          // return arr;
-          // 绘制图表
-          education.setOption(option_education);
+          console.log(res.data);
+          option_education.series[0].data[0] = res.data[0].education.doctor;
+          option_education.series[0].data[1] = res.data[0].education.highSchool;
+          option_education.series[0].data[2] =
+            res.data[0].education.postgraduate;
+          option_education.series[0].data[3] = res.data[0].education.specialty;
+          option_education.series[0].data[4] =
+            res.data[0].education.undergraduate;
         }
+        // 绘制图表
+        education.setOption(option_education);
       });
     },
 
     //身份
     pchangge() {
       var pchangge = this.$echarts.init(document.getElementById("pchangge"));
-      Pchat.Pchart({}).then(res => {
+      Pchat.Echart({}).then(res => {
         option_pchangge.series[0].data[0].value = res.data[0].identity.cadre;
         option_pchangge.series[0].data[1].value = res.data[0].identity.masses;
         // 绘制图表
@@ -114,7 +104,7 @@ export default {
     //科室
     faceof() {
       var faceof = this.$echarts.init(document.getElementById("faceof"));
-      Pchat.Pchart({}).then(res => {
+      Pchat.Echart({}).then(res => {
         if (res.code === 200) {
           option_faceof.series[0].data[0].value = res.data[0].department.eye;
           option_faceof.series[0].data[1].value =
@@ -134,37 +124,68 @@ export default {
     //支部
     stripline() {
       var stripline = this.$echarts.init(document.getElementById("stripline"));
-      // 绘制图表
-      stripline.setOption(option_stripline);
+      Pchat.Echart({}).then(res => {
+        if (res.code === 200) {
+          option_stripline.series[0].data[0] = res.data[0].branch.ONE;
+          option_stripline.series[0].data[1] = res.data[0].branch.two;
+          option_stripline.series[0].data[2] = res.data[0].branch.three;
+          option_stripline.series[0].data[3] = res.data[0].branch.four;
+          option_stripline.series[0].data[4] = res.data[0].branch.five;
+        }
+        // 绘制图表
+        stripline.setOption(option_stripline);
+      });
     },
 
     //年龄统计
     age() {
       // 基于准备好的dom，初始化echarts实例
       var ages = this.$echarts.init(document.getElementById("ages"));
-      // 绘制图表
-      ages.setOption(option_age);
+      Pchat.Echart({}).then(res => {
+        if (res.code === 200) {
+          option_age.series[0].data[0] = res.data[0].age["25周岁以下"];
+          option_age.series[0].data[1] = res.data[0].age["25-35周岁"];
+          option_age.series[0].data[2] = res.data[0].age["35-45以下"];
+          option_age.series[0].data[3] = res.data[0].age["45周岁以上"];
+        }
+        // 绘制图表
+        ages.setOption(option_age);
+      });
     },
 
     //党龄
     city() {
       // 基于准备好的dom，初始化echarts实例
       var city = this.$echarts.init(document.getElementById("city"));
-
-      // 绘制图表
-      city.setOption(option_city);
+      Pchat.Echart({}).then(res => {
+        if (res.code === 200) {
+          option_city.series[0].data[0] = res.data[0].partyAge["2年以下"];
+          option_city.series[0].data[1] = res.data[0].partyAge["2-5年"];
+          option_city.series[0].data[2] = res.data[0].partyAge["5-10年"];
+          option_city.series[0].data[3] = res.data[0].partyAge["10年以上"];
+        }
+        // 绘制图表
+        city.setOption(option_city);
+      });
     },
 
     //职称
     activity() {
       // 基于准备好的dom，初始化echarts实例
       var activity = this.$echarts.init(document.getElementById("activity"));
-      // $.get("http://localhost/userInfo/listSex").done(function(result) {
-      //   console.log(7878);
-      //   console.log(result);
-      //   result = JSON.parse(result);
-      // 绘制图表
-      activity.setOption(option_activity);
+      Pchat.Echart({}).then(res => {
+        if (res.code === 200) {
+          option_activity.series[0].data[0] = res.data[0].title.doctor;
+          option_activity.series[0].data[1] = res.data[0].title.attendingDoctor;
+          option_activity.series[0].data[2] =
+            res.data[0].title.deputyChiefPhysician;
+          option_activity.series[0].data[3] = res.data[0].title.chiefPhysician;
+          option_activity.series[0].data[4] = res.data[0].title.residents;
+        }
+        // 绘制图表
+        activity.setOption(option_activity);
+      });
+
       // });
     },
 
