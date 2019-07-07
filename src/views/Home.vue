@@ -112,9 +112,12 @@ export default {
           },
             {'name': '力量图谱', 'icon': 'el-icon-location','index': '3-3', 'child': [
               {'name': '党组织力量图谱', 'icon': 'el-icon-location', 'index':  '/Index/PartyOrganizationalStrength'},
-              {'name': '群团力量图谱', 'icon': 'el-icon-location', 'index':  '/Index/PeopleStrength'},
-              {'name': '统战力量图谱', 'icon': 'el-icon-location', 'index':  '/Index/UnitedFrontStrength'},
-              {'name': '老干部力量图谱', 'icon': 'el-icon-location', 'index':  '/Index/VeteranCadreStrength'},
+              {'name': '高知群体图形比例', 'icon': 'el-icon-location', 'index':  '/Index/PeopleStrength'},
+              {'name': '工会图形比例', 'icon': 'el-icon-location', 'index':  '/Index/LaborUnionStrength'},
+              {'name': '妇代会力量图谱', 'icon': 'el-icon-location', 'index':  '/Index/LadyStrength'},
+              {'name': '民主党派图形比例', 'icon': 'el-icon-location', 'index':  '/Index/DemocraticParty'},
+              {'name': '团委图形比例', 'icon': 'el-icon-location', 'index':  '/Index/YounthLeague'},
+             {'name': '离退休老干部力量图谱', 'icon': 'el-icon-location', 'index':  '/Index/VeteranCadreStrength'},
               ]
             },
 //            {'name': '党务公开', 'icon': 'el-icon-location','index': '3-4', 'child': [

@@ -7,8 +7,8 @@
     </div>
     <div style="float: left">
       <div id="faceof" :style="{width: '550px', height: '270px'}"></div>
-      <div id="ages" :style="{width: '550px', height: '270px'}"></div>
       <div id="activity" :style="{width: '550px', height: '270px'}"></div>
+      <div id="ages" :style="{width: '550px', height: '270px'}"></div>
     </div>
     <div style="float: left">
       <div id="city" :style="{width: '550px', height: '270px'}"></div>
@@ -17,12 +17,13 @@
   </div>
 </template>
 <script>
-//老干部力量图谱
+//工会力量图谱
 import Pchat from "../services/EchartService.js";
 import { option_people } from "@/components/echarts/people.js";
 import { option_education } from "@/components/echarts/education.js";
 import { option_pchangge } from "@/components/echarts/pchangge.js";
 import { option_faceof } from "@/components/echarts/faceof.js";
+// import { option_stripline } from "@/components/Echarts/stripline.js";
 import { option_age } from "@/components/echarts/ages.js";
 import { option_city } from "@/components/echarts/city.js";
 import { option_activity } from "@/components/echarts/activity.js";
@@ -52,15 +53,16 @@ export default {
     this.city();
     this.activity();
     this.financial();
+    // this.stripline();
   },
   methods: {
     //男女比例
     people() {
       var people = this.$echarts.init(document.getElementById("people"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Gchart({}).then(res => {
+        console.log(9090);
         console.log(res);
         if (res.code === 200) {
-          console.log(res.data[0]);
           option_people.series[0].data[0].value = res.data[0].sex.man;
           option_people.series[0].data[1].value = res.data[0].sex.woman;
           //绘制图表
@@ -72,7 +74,7 @@ export default {
     //学历
     education() {
       var education = this.$echarts.init(document.getElementById("education"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Gchart({}).then(res => {
         if (res.code === 200) {
           console.log(res.data);
           option_education.series[0].data[0] = res.data[0].education.doctor;
@@ -91,7 +93,7 @@ export default {
     //身份
     pchangge() {
       var pchangge = this.$echarts.init(document.getElementById("pchangge"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Gchart({}).then(res => {
         option_pchangge.series[0].data[0].value = res.data[0].identity.cadre;
         option_pchangge.series[0].data[1].value = res.data[0].identity.masses;
         // 绘制图表
@@ -102,7 +104,7 @@ export default {
     //科室
     faceof() {
       var faceof = this.$echarts.init(document.getElementById("faceof"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Gchart({}).then(res => {
         if (res.code === 200) {
           option_faceof.series[0].data[0].value = res.data[0].department.eye;
           option_faceof.series[0].data[1].value =
@@ -118,11 +120,12 @@ export default {
         }
       });
     },
+
     //年龄统计
     age() {
       // 基于准备好的dom，初始化echarts实例
       var ages = this.$echarts.init(document.getElementById("ages"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Gchart({}).then(res => {
         if (res.code === 200) {
           option_age.series[0].data[0] = res.data[0].age["25周岁以下"];
           option_age.series[0].data[1] = res.data[0].age["25-35周岁"];
@@ -138,7 +141,7 @@ export default {
     city() {
       // 基于准备好的dom，初始化echarts实例
       var city = this.$echarts.init(document.getElementById("city"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Gchart({}).then(res => {
         if (res.code === 200) {
           option_city.series[0].data[0] = res.data[0].partyAge["2年以下"];
           option_city.series[0].data[1] = res.data[0].partyAge["2-5年"];
@@ -154,15 +157,13 @@ export default {
     activity() {
       // 基于准备好的dom，初始化echarts实例
       var activity = this.$echarts.init(document.getElementById("activity"));
-      Pchat.Lchart({}).then(res => {
-        if (res.code === 200) {
-          option_activity.series[0].data[0] = res.data[0].title.doctor;
-          option_activity.series[0].data[1] = res.data[0].title.attendingDoctor;
-          option_activity.series[0].data[2] =
-            res.data[0].title.deputyChiefPhysician;
-          option_activity.series[0].data[3] = res.data[0].title.chiefPhysician;
-          option_activity.series[0].data[4] = res.data[0].title.residents;
-        }
+      Pchat.Gchart({}).then(res => {
+        option_activity.series[0].data[0] = res.data[0].title.doctor;
+        option_activity.series[0].data[1] = res.data[0].title.attendingDoctor;
+        option_activity.series[0].data[2] =
+          res.data[0].title.deputyChiefPhysician;
+        option_activity.series[0].data[3] = res.data[0].title.chiefPhysician;
+        option_activity.series[0].data[4] = res.data[0].title.residents;
         // 绘制图表
         activity.setOption(option_activity);
       });
@@ -172,9 +173,7 @@ export default {
     financial() {
       // 基于准备好的dom，初始化echarts实例
       var financial = this.$echarts.init(document.getElementById("financial"));
-      Pchat.Lchart({}).then(res => {
-        console.log(9090);
-        console.log(res);
+      Pchat.Gchart({}).then(res => {
         if (res.code === 200) {
           console.log(res.data[0]);
           option_financial.series[0].data[0].value = res.data[0].place.NO;
@@ -188,6 +187,9 @@ export default {
 };
 </script>
 <style lang="postcss" scoped>
+body {
+  background-color: #ff0000;
+}
 .i-div {
   display: flex;
   justify-content: center;

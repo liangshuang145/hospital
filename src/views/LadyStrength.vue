@@ -8,16 +8,16 @@
     <div style="float: left">
       <div id="faceof" :style="{width: '550px', height: '270px'}"></div>
       <div id="ages" :style="{width: '550px', height: '270px'}"></div>
-      <div id="activity" :style="{width: '550px', height: '270px'}"></div>
     </div>
     <div style="float: left">
       <div id="city" :style="{width: '550px', height: '270px'}"></div>
+      <div id="activity" :style="{width: '550px', height: '270px'}"></div>
       <div id="financial" :style="{width: '550px', height: '270px'}"></div>
     </div>
   </div>
 </template>
 <script>
-//老干部力量图谱
+//妇代会力量图谱
 import Pchat from "../services/EchartService.js";
 import { option_people } from "@/components/echarts/people.js";
 import { option_education } from "@/components/echarts/education.js";
@@ -57,7 +57,7 @@ export default {
     //男女比例
     people() {
       var people = this.$echarts.init(document.getElementById("people"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Fchart({}).then(res => {
         console.log(res);
         if (res.code === 200) {
           console.log(res.data[0]);
@@ -72,7 +72,7 @@ export default {
     //学历
     education() {
       var education = this.$echarts.init(document.getElementById("education"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Fchart({}).then(res => {
         if (res.code === 200) {
           console.log(res.data);
           option_education.series[0].data[0] = res.data[0].education.doctor;
@@ -91,7 +91,7 @@ export default {
     //身份
     pchangge() {
       var pchangge = this.$echarts.init(document.getElementById("pchangge"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Fchart({}).then(res => {
         option_pchangge.series[0].data[0].value = res.data[0].identity.cadre;
         option_pchangge.series[0].data[1].value = res.data[0].identity.masses;
         // 绘制图表
@@ -102,7 +102,7 @@ export default {
     //科室
     faceof() {
       var faceof = this.$echarts.init(document.getElementById("faceof"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Fchart({}).then(res => {
         if (res.code === 200) {
           option_faceof.series[0].data[0].value = res.data[0].department.eye;
           option_faceof.series[0].data[1].value =
@@ -118,11 +118,12 @@ export default {
         }
       });
     },
+
     //年龄统计
     age() {
       // 基于准备好的dom，初始化echarts实例
       var ages = this.$echarts.init(document.getElementById("ages"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Fchart({}).then(res => {
         if (res.code === 200) {
           option_age.series[0].data[0] = res.data[0].age["25周岁以下"];
           option_age.series[0].data[1] = res.data[0].age["25-35周岁"];
@@ -138,7 +139,7 @@ export default {
     city() {
       // 基于准备好的dom，初始化echarts实例
       var city = this.$echarts.init(document.getElementById("city"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Fchart({}).then(res => {
         if (res.code === 200) {
           option_city.series[0].data[0] = res.data[0].partyAge["2年以下"];
           option_city.series[0].data[1] = res.data[0].partyAge["2-5年"];
@@ -154,7 +155,7 @@ export default {
     activity() {
       // 基于准备好的dom，初始化echarts实例
       var activity = this.$echarts.init(document.getElementById("activity"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Fchart({}).then(res => {
         if (res.code === 200) {
           option_activity.series[0].data[0] = res.data[0].title.doctor;
           option_activity.series[0].data[1] = res.data[0].title.attendingDoctor;
@@ -172,7 +173,7 @@ export default {
     financial() {
       // 基于准备好的dom，初始化echarts实例
       var financial = this.$echarts.init(document.getElementById("financial"));
-      Pchat.Lchart({}).then(res => {
+      Pchat.Fchart({}).then(res => {
         console.log(9090);
         console.log(res);
         if (res.code === 200) {
@@ -188,9 +189,3 @@ export default {
 };
 </script>
 <style lang="postcss" scoped>
-.i-div {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-}
-</style>

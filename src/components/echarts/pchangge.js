@@ -28,8 +28,6 @@ export const option_pchangge = {
         // value: result.data[1].message,
         name: '非党员'
       },
-
-
     ],
     itemStyle: {
       emphasis: {

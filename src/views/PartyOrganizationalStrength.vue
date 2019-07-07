@@ -86,7 +86,7 @@ export default {
             res.data[0].education.undergraduate;
         }
 
-        // 绘制图表
+        // 绘制图表 
         education.setOption(option_education);
       });
     },

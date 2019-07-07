@@ -9,13 +9,13 @@
     center
   >
     <el-form ref="form" :model="form" label-width="80px">
-      <el-form-item label="*名称" prop="name">
+      <el-form-item label="名称" prop="name" required>
         <el-input v-model="form.name"></el-input>
       </el-form-item>
       <el-form-item label="分数" prop="total">
         <el-input v-model="form.total"></el-input>
       </el-form-item>
-      <el-form-item label="*年份" prop="year">
+      <el-form-item label="年份" prop="year" required>
         <el-col :span="11">
           <el-date-picker
             type="year"
@@ -27,17 +27,19 @@
           ></el-date-picker>
         </el-col>
       </el-form-item>
-      <el-form-item label="*机构" prop="subjectId">
+      <el-form-item label="机构" prop="subjectId" required>
         <el-select v-model="form.subjectId" placeholder="请选择" @change="selectSubject">
           <el-option v-for="item in subjectList" :key="item.id" :label="item.name" :value="item.id"></el-option>
         </el-select>
       </el-form-item>
 
+      <el-radio v-model="radio" label="1"></el-radio>
       <el-form-item label="部门" prop="departId">
         <el-select filterable placeholder="请选择" v-model="form.departId" @change="selectDepart">
           <el-option v-for="item in departList" :key="item.id" :label="item.name" :value="item.id"></el-option>
         </el-select>
       </el-form-item>
+      <el-radio v-model="radio" label="2"></el-radio>
       <el-form-item label="组织" prop="groupId">
         <el-select filterable placeholder="请选择" v-model="form.groupId" @change="selectGroup">
           <el-option v-for="item in groupList" :key="item.id" :label="item.name" :value="item.id"></el-option>
@@ -45,13 +47,23 @@
       </el-form-item>
       <el-form-item label="用户" prop="userId">
         <el-col :span="12">
-          <el-autocomplete
+          <el-select
+            v-model="form.userName"
+            filterable
+            reserve-keyword
+            placeholder="请输入用户名称"
+            :filter-method="selectUserList"
+            @change="selectUser"
+          >
+            <el-option v-for="item in userLists" :key="item.id" :label="item.name" :value="item.id"></el-option>
+          </el-select>
+          <!-- <el-autocomplete
             class="inline-input"
-            v-model="state1"
-            :fetch-suggestions="getUserList"
+            v-model="form.userId"
+            :fetch-suggestions="selectUserList"
             placeholder="请输入内容"
-            @select="handleSelect"
-          ></el-autocomplete>
+            @change="selectUser"
+          ></el-autocomplete>-->
         </el-col>
       </el-form-item>
       <el-form-item label="附件" prop="fileId">
@@ -96,8 +108,10 @@
 </template>
 <script>
 import MedicalService from "../../../services/MedicalService";
+import UserService from "../../../services/UserService";
 import Validator from "@/lib/validator";
 import { mapState, mapActions } from "vuex";
+import { truncate } from "fs";
 
 export default {
   name: "addDocument",
@@ -114,13 +128,15 @@ export default {
   },
   data() {
     return {
-      isShow: false,
+      isShow: true,
       title: "",
       fileList: [],
-      state1: "",
-      result: [],
+      words: [],
+      userLists: [],
+      radio: 1,
       form: {
         name: "",
+        userName: "",
         total: 0,
         year: "",
         subjectId: "",
@@ -195,10 +211,7 @@ export default {
       this.title = title;
     }
   },
-  mounted() {
-    this.getSubjectList();
-    this.word = this.result;
-  },
+
   computed: {
     ...mapState([
       "addDocument",
@@ -208,6 +221,10 @@ export default {
       "userList" //用户列表
     ])
   },
+  mounted() {
+    this.getSubjectList();
+    // this.words = userList;
+  },
   methods: {
     ...mapActions([
       "getAddDocument",
@@ -215,7 +232,8 @@ export default {
       "getSubjectList",
       "getDepartList",
       "getGroupListBySubjectId",
-      "getDepartListBySubjectId"
+      "getDepartListBySubjectId",
+      "getUserListByName"
     ]),
     //附件ID集合
     // onSuccess(res, file, fileList) {
@@ -236,7 +254,7 @@ export default {
         console.log(fileList);
         var arr = [];
         for (var i = 0; i < fileList.length; i++) {
-          arr.push(fileList[i].response.data[1]);
+          arr.push(fileList[i].response.data.id);
         }
         this.form.fileIds = arr;
       }
@@ -244,29 +262,35 @@ export default {
     error(err, file, fileList) {
       console.log(文件上传失败);
     },
-
+    // 通过用户名称进行搜索
+    selectUserList(val) {
+      UserService.getUserListByName({
+        key: "name",
+        value: val,
+        page: 0,
+        size: 30
+      }).then(res => {
+        if (res.code === 200) {
+          this.userLists = res.data.content;
+        } else {
+          this.$message.error(res.message);
+        }
+      });
+      console.log(val);
+    },
     //对用户组过滤判断
     getUserList(queryString, cb) {
-      var word = this.word;
+      var words = this.words;
       var result = queryString
-        ? word.filter(this.createFilter(queryString))
-        : word;
+        ? userList.filter(this.createFilter(queryString))
+        : userList;
       // 调用 callback 返回建议列表的数据
       cb(result);
     },
-
-    getUserList(queryString, cb) {
-      var word = this.word;
-      var result = queryString
-        ? word.filter(this.createFilter(queryString))
-        : word;
-      //调用callback返回建议列表的数据
-      cb(result);
-    },
     createFilter(queryString) {
-      return word => {
+      return words => {
         return (
-          word.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
+          words.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
         );
       };
     },

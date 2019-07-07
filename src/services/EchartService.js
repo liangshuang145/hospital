@@ -11,7 +11,7 @@ import http from "@/lib/http";
  * @param param
  * @returns {Promise}
  */
-//党组织图谱
+//党组织力量图谱
 const Pchart = (param = {}) => {
   return new Promise((resolve, reject) => {
     http.get({
@@ -24,11 +24,77 @@ const Pchart = (param = {}) => {
   });
 };
 
-//力量图谱
+//高知群体力量图谱
 const Echart = (param = {}) => {
   return new Promise((resolve, reject) => {
     http.get({
-      url: '',
+      url: 'userInfoGzqt/listPower',
+      method: 'get',
+      data: param
+    }).then(res => {
+      resolve(res)
+    })
+  })
+}
+
+//工会力量图谱
+const Gchart = (param = {}) => {
+  return new Promise((resolve, reject) => {
+    http.get({
+      url: 'userInfoGh/listPower',
+      method: 'get',
+      data: param
+    }).then(res => {
+      console.log(res)
+      resolve(res)
+    })
+  })
+}
+
+//老干部力量图谱
+const Lchart = (param = {}) => {
+  return new Promise((resolve, reject) => {
+    http.get({
+      url: 'userInfoLtxlgb/listPower',
+      method: 'get',
+      data: param
+    }).then(res => {
+      resolve(res)
+    })
+  })
+}
+
+//妇代会力量图谱
+const Fchart = (param = {}) => {
+  return new Promise((resolve, reject) => {
+    http.get({
+      url: 'userInfoFdh/listPower',
+      method: 'get',
+      data: param
+    }).then(res => {
+      resolve(res)
+    })
+  })
+}
+
+//民主党派力量图谱
+const Mchart = (param = {}) => {
+  return new Promise((resolve, reject) => {
+    http.get({
+      url: 'userInfoMzdp/listPower',
+      method: 'get',
+      data: param
+    }).then(res => {
+      resolve(res)
+    })
+  })
+}
+
+//团委力量图谱
+const Tchart = (param = {}) => {
+  return new Promise((resolve, reject) => {
+    http.get({
+      url: 'userInfoTw/listPower',
       method: 'get',
       data: param
     }).then(res => {
@@ -38,5 +104,10 @@ const Echart = (param = {}) => {
 }
 export default {
   Pchart,
-  Echart
+  Echart,
+  Gchart,
+  Lchart,
+  Fchart,
+  Mchart,
+  Tchart
 };

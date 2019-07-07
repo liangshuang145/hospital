@@ -7,25 +7,22 @@
     </div>
     <div style="float: left">
       <div id="faceof" :style="{width: '550px', height: '270px'}"></div>
-      <div id="stripline" :style="{width: '550px', height: '270px'}"></div>
+      <div id="activity" :style="{width: '550px', height: '270px'}"></div>
       <div id="ages" :style="{width: '550px', height: '270px'}"></div>
     </div>
     <div style="float: left">
-      <div id="city" :style="{width: '550px', height: '270px'}"></div>
-      <div id="activity" :style="{width: '550px', height: '270px'}"></div>
       <div id="financial" :style="{width: '550px', height: '270px'}"></div>
     </div>
   </div>
 </template>
 <script>
+//高知群体力量图谱
 import Pchat from "../services/EchartService.js";
 import { option_people } from "@/components/echarts/people.js";
 import { option_education } from "@/components/echarts/education.js";
 import { option_pchangge } from "@/components/echarts/pchangge.js";
 import { option_faceof } from "@/components/echarts/faceof.js";
-import { option_stripline } from "@/components/echarts/stripline.js";
 import { option_age } from "@/components/echarts/ages.js";
-import { option_city } from "@/components/echarts/city.js";
 import { option_activity } from "@/components/echarts/activity.js";
 import { option_financial } from "@/components/echarts/financial.js";
 
@@ -50,8 +47,6 @@ export default {
     this.education();
     this.pchangge();
     this.faceof();
-    this.stripline();
-    this.city();
     this.activity();
     this.financial();
   },
@@ -121,22 +116,6 @@ export default {
       });
     },
 
-    //支部
-    stripline() {
-      var stripline = this.$echarts.init(document.getElementById("stripline"));
-      Pchat.Echart({}).then(res => {
-        if (res.code === 200) {
-          option_stripline.series[0].data[0] = res.data[0].branch.ONE;
-          option_stripline.series[0].data[1] = res.data[0].branch.two;
-          option_stripline.series[0].data[2] = res.data[0].branch.three;
-          option_stripline.series[0].data[3] = res.data[0].branch.four;
-          option_stripline.series[0].data[4] = res.data[0].branch.five;
-        }
-        // 绘制图表
-        stripline.setOption(option_stripline);
-      });
-    },
-
     //年龄统计
     age() {
       // 基于准备好的dom，初始化echarts实例
@@ -150,22 +129,6 @@ export default {
         }
         // 绘制图表
         ages.setOption(option_age);
-      });
-    },
-
-    //党龄
-    city() {
-      // 基于准备好的dom，初始化echarts实例
-      var city = this.$echarts.init(document.getElementById("city"));
-      Pchat.Echart({}).then(res => {
-        if (res.code === 200) {
-          option_city.series[0].data[0] = res.data[0].partyAge["2年以下"];
-          option_city.series[0].data[1] = res.data[0].partyAge["2-5年"];
-          option_city.series[0].data[2] = res.data[0].partyAge["5-10年"];
-          option_city.series[0].data[3] = res.data[0].partyAge["10年以上"];
-        }
-        // 绘制图表
-        city.setOption(option_city);
       });
     },
 
@@ -185,8 +148,6 @@ export default {
         // 绘制图表
         activity.setOption(option_activity);
       });
-
-      // });
     },
 
     //户籍统计

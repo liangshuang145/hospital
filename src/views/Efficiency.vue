@@ -10,10 +10,10 @@
     <div class="content-panel">
       <el-row>
         <el-col :span="4">
-          <tree @nodeDept="thisDept"/>
+          <tree @nodeDept="thisDept" />
         </el-col>
         <el-col :span="20">
-          <manage :currentNode="currentNode"/>
+          <manage :currentNode="currentNode" />
         </el-col>
       </el-row>
     </div>
@@ -21,43 +21,42 @@
 </template>
 
 <script>
-  import Manage from '@/components/Efficiency/Manage/Manage.vue'
-  import Tree from '@/components/Efficiency/Tree/Tree.vue'
+import Manage from "@/components/Efficiency/Manage/Manage.vue";
+import Tree from "@/components/Efficiency/Tree/Tree.vue";
 
-    export default{
-        // 这里是name,记得填写
-        name: 'efficiency',
-        //  数据定义
-        data () {
-            return {
-                pageTitle:'行风效能',
-              currentNode:null
-            }
-        },
-        // 页面初始化(生命周期)
-        created(){
-        },
-        // 页面方法
-        methods: {
-          thisDept(data){
-              this.currentNode = data
-          }
-        },
-        // 计算属性
-        computed: {},
-        // 侦听器
-        watch: {},
-        // 依赖注入
-        components: {
-            Tree,
-          Manage
-        }
+export default {
+  // 这里是name,记得填写
+  name: "efficiency",
+  //  数据定义
+  data() {
+    return {
+      pageTitle: "行风效能",
+      currentNode: null
+    };
+  },
+  // 页面初始化(生命周期)
+  created() {},
+  // 页面方法
+  methods: {
+    thisDept(data) {
+      this.currentNode = data;
     }
+  },
+  // 计算属性
+  computed: {},
+  // 侦听器
+  watch: {},
+  // 依赖注入
+  components: {
+    Tree,
+    Manage
+  }
+};
 </script>
 
 <!-- 本地样式 -->
 <style scoped>
-  .content-panel {
-    margin-top: 20px;
-  }
+.content-panel {
+  margin-top: 20px;
+}
 </style>

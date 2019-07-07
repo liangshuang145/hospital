@@ -12,7 +12,7 @@ export const option_age = {
   series: [{
     name: '年龄',
     type: 'bar',
-    barWidth: '30%',
+    barWidth: '50%',
     // data: [22, 33, 44],
     data: [],
     itemStyle: {

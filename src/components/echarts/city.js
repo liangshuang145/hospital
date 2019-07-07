@@ -1,19 +1,23 @@
 export const option_city = {
   title: {
-    text: '党龄统计',
+    text: ' 年龄统计',
     x: 'center'
   },
-
+  tooltip: {},
   xAxis: {
-    type: 'category',
-    data: ['2年以下', '2年-5年', '5年-10年', '10年以上']
+    data: ["2年以下", "2-5年", "5-10年", '10年以上'],
+
   },
-  yAxis: {
-    type: 'value'
-  },
+  yAxis: {},
   series: [{
+    name: '年龄',
+    type: 'bar',
+    barWidth: '40%',
     data: [],
-    type: 'line',
-    areaStyle: {}
+    itemStyle: {
+      normal: {
+        color: 'green'
+      }
+    }
   }]
 }

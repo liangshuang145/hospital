@@ -17,12 +17,12 @@ import mock from '@/mocks/data'
 const getUserList = (param = {}) => {
   return new Promise((resolve) => {
     param = {
-      page:param.page
+      page: param.page
     };
     http.get({
-      url:'user/list',
-      method:'get',
-      data:param
+      url: 'user/list',
+      method: 'get',
+      data: param
     }).then((res) => {
       resolve(res)
     })
@@ -37,14 +37,15 @@ const getUserList = (param = {}) => {
 const getUserListByName = (param = {}) => {
   return new Promise((resolve) => {
     param = {
-      key:param.name,
-      page:param.page,
-      size:param.size
+      key: param.key,
+      value: param.value,
+      page: param.page,
+      size: param.size
     };
     http.post({
-      url:'user/search',
-      method:'post',
-      data:param
+      url: 'user/search',
+      method: 'post',
+      data: param
     }).then((res) => {
       resolve(res)
     })
@@ -59,14 +60,14 @@ const getUserListByName = (param = {}) => {
 const getUserListByGroupId = (param = {}) => {
   return new Promise((resolve) => {
     param = {
-      groupId:param.groupId,
-      page:param.page,
-      size:param.size
+      groupId: param.groupId,
+      page: param.page,
+      size: param.size
     };
     http.post({
-      url:'user/groupUser',
-      method:'post',
-      data:param
+      url: 'user/groupUser',
+      method: 'post',
+      data: param
     }).then((res) => {
       resolve(res)
     })
@@ -81,14 +82,14 @@ const getUserListByGroupId = (param = {}) => {
 const getUserListByDepartId = (param = {}) => {
   return new Promise((resolve) => {
     param = {
-      departId:param.departId,
-      page:param.page,
-      size:param.size
+      departId: param.departId,
+      page: param.page,
+      size: param.size
     };
     http.post({
-      url:'user/departUser',
-      method:'post',
-      data:param
+      url: 'user/departUser',
+      method: 'post',
+      data: param
     }).then((res) => {
       resolve(res)
     })
@@ -103,12 +104,12 @@ const getUserListByDepartId = (param = {}) => {
 const getUserInfo = (param = {}) => {
   return new Promise((resolve) => {
     param = {
-      id:param.id,
+      id: param.id,
     };
     http.post({
-      url:'user/view',
-      method:'post',
-      data:param
+      url: 'user/view',
+      method: 'post',
+      data: param
     }).then((res) => {
       resolve(res)
     })
@@ -123,20 +124,20 @@ const getUserInfo = (param = {}) => {
 const addUser = (param = {}) => {
   return new Promise((resolve) => {
     param = {
-      account:param.account,
-      name:param.name,
-      sex:Number(param.sex),
-      userType:param.userType,
-      subjectId:param.subjectId,
-      departId:param.departId,
-      groupsId:param.groupsId,
-      remark:param.remark,
-      password:param.password
+      account: param.account,
+      name: param.name,
+      sex: Number(param.sex),
+      userType: param.userType,
+      subjectId: param.subjectId,
+      departId: param.departId,
+      groupsId: param.groupsId,
+      remark: param.remark,
+      password: param.password
     };
     http.get({
-      url:'user/add',
-      method:'get',
-      data:param
+      url: 'user/add',
+      method: 'get',
+      data: param
     }).then((res) => {
       resolve(res)
     })
@@ -178,12 +179,12 @@ const deleteUser = (param = {}) => {
   // 测试
   return new Promise((resolve) => {
     param = {
-      id:param.id
+      id: param.id
     };
     http.get({
-      url:'user/del',
-      data:param,
-      method:'get'
+      url: 'user/del',
+      data: param,
+      method: 'get'
     }).then((res) => {
       resolve(res)
     });
