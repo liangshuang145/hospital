@@ -247,6 +247,7 @@ export default {
       console.log(item);
     },
     //附件成功和失败的判断
+
     success(res, file, fileList) {
       if (res.code === 200) {
         console.log(1212);
@@ -268,6 +269,7 @@ export default {
       UserService.getUserListByName({
         key: "name",
         value: val,
+        page: 0,
         page: 0,
         size: 30
       }).then(res => {
