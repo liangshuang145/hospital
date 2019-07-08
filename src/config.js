@@ -12,7 +12,7 @@ const env = {
   local: {
     name: "local",
     //公司服务器
-    // base: "http://192.168.1.3:8080/ayundao/"
+    base: "http://192.168.1.3:8080/ayundao/"
     // //石江凯服务器
     // base: "http://192.168.1.16:8030/"
 

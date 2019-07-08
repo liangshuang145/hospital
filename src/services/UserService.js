@@ -52,6 +52,7 @@ const getUserListByName = (param = {}) => {
   })
 };
 
+
 /**
  * 通过组织id查询用户列表
  * @param param
@@ -69,6 +70,7 @@ const getUserListByGroupId = (param = {}) => {
       method: 'post',
       data: param
     }).then((res) => {
+      console.log(888)
       resolve(res)
     })
   })

@@ -33,15 +33,16 @@
         </el-select>
       </el-form-item>
 
-      <el-radio v-model="radio" label="1"></el-radio>
       <el-form-item label="部门" prop="departId">
         <el-select filterable placeholder="请选择" v-model="form.departId" @change="selectDepart">
           <el-option v-for="item in departList" :key="item.id" :label="item.name" :value="item.id"></el-option>
         </el-select>
       </el-form-item>
+
       <el-radio v-model="radio" label="2"></el-radio>
       <el-form-item label="组织" prop="groupId">
         <el-select filterable placeholder="请选择" v-model="form.groupId" @change="selectGroup">
+          <!-- v-if="!isShow" -->
           <el-option v-for="item in groupList" :key="item.id" :label="item.name" :value="item.id"></el-option>
         </el-select>
       </el-form-item>
@@ -278,6 +279,7 @@ export default {
       });
       console.log(val);
     },
+
     //对用户组过滤判断
     getUserList(queryString, cb) {
       var words = this.words;
@@ -286,13 +288,6 @@ export default {
         : userList;
       // 调用 callback 返回建议列表的数据
       cb(result);
-    },
-    createFilter(queryString) {
-      return words => {
-        return (
-          words.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0
-        );
-      };
     },
 
     handleChange(file, fileList) {
@@ -340,7 +335,6 @@ export default {
               this.getAddDocument();
               this.isShow = false;
               this.$message.success(res.message);
-              console.log(66666);
               console.log(信息添加成功);
             } else {
               this.$message.error(res.message);
